@@ -18,7 +18,6 @@ public class WebShop {
 
     public LocalDate getExpireDate(String productName) {
         Merchandise searched = findMerchandiseByName(productName);
-        searched.setBoughtAt(LocalDate.now());
         return searched.getExpireAt();
     }
 

@@ -10,7 +10,6 @@ public abstract class Merchandise {
     protected Merchandise(String name, int price) {
         this.name = name;
         this.price = price;
-        boughtAt = LocalDate.now();
     }
 
     protected Merchandise(Merchandise toCopy) {
@@ -34,4 +33,6 @@ public abstract class Merchandise {
     }
 
     public abstract LocalDate getExpireAt();
+
+    public abstract Merchandise getBoughtCopy();
 }

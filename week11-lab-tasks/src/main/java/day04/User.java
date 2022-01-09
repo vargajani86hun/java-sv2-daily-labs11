@@ -14,28 +14,27 @@ public class User {
 
     public void buy(Merchandise merchandise) {
         hasEnoughBalanceToBuy(merchandise);
-        if (merchandise instanceof Service service) {
-            buyService(service);
+        if (merchandise instanceof Service) {
+            buyService((Service) merchandise.getBoughtCopy());
         }
         else {
-            buyProduct((Product) merchandise);
+            buyProduct((Product) merchandise.getBoughtCopy());
         }
     }
 
     private void buyService(Service service) {
-        boughtMerchandises.add(new Service(service));
+        boughtMerchandises.add(service);
         balance -= service.getPrice();
     }
 
     private void buyProduct(Product product) {
         if (balance > product.getPrice() * 3) {
-            Product extended = new Product(product);
-            extended.buyExtendedWarranty();
-            boughtMerchandises.add(extended);
-            balance -= extended.getPrice() * 110 / 100;
+            product.buyExtendedWarranty();
+            boughtMerchandises.add(product);
+            balance -= product.getPrice() * 1.1;
         }
         else {
-            boughtMerchandises.add(new Product(product));
+            boughtMerchandises.add(product);
             balance -= product.getPrice();
         }
     }
